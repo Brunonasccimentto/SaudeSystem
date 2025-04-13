@@ -13,7 +13,7 @@ namespace SistemaSaude.Repository
     {
         public Doctor? GetDoctorByName(string name)
         {
-            return context.Medicos.FirstOrDefault(doctor => doctor.Name == name);
+            return context.Medicos.FirstOrDefault(doctor => doctor.Name.ToLower() == name);
         }
 
         public IEnumerable<Doctor> GetDoctors(int? size)
