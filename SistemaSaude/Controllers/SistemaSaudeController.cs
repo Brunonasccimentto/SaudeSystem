@@ -32,7 +32,7 @@ namespace SistemaSaude.Controllers
 
         [HttpGet("buscar-Medico/{nome}")]
         public ActionResult<IEnumerable<Doctor>> BuscarMedico(string nome) {
-            var doctor = _context.GetDoctorByName(nome);
+            var doctor = _context.GetDoctorByName(nome.ToLower());
 
             return doctor is not null ? Ok(doctor) : NotFound($"Nenhum médico com o nome {nome} foi encontrado!");    
         }
