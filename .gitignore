@@ -1,0 +1,23 @@
+# Compiled source #
+###################
+**/bin/
+**/obj/
+
+# User-specific files #
+#######################
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results #
+#################
+*.dll
+*.exe
+*.app
+*.log
+
+# OS generated files #
+######################
+.DS_Store
+Thumbs.db
