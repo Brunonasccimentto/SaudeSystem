@@ -12,7 +12,7 @@ public class DoctorRepositoryTests
     private static SistemaSaudeDbContext MockDbContext()
     {
         var options = new DbContextOptionsBuilder<SistemaSaudeDbContext>()
-            .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
+            .UseInMemoryDatabase(databaseName: "Mock")
             .Options;
 
         var context = new SistemaSaudeDbContext(options);
@@ -22,6 +22,9 @@ public class DoctorRepositoryTests
 
     private static void SeedData(SistemaSaudeDbContext context)
     {
+        if (context.Medicos.Any()) {
+            context.Medicos.RemoveRange(context.Medicos);
+        }
         context.Medicos.AddRange(new List<Doctor>
         {
             new() {
@@ -75,10 +78,10 @@ public class DoctorRepositoryTests
         var context = MockDbContext();
         var repo = new DoctorRepository(context);
 
-        var doctor = repo.GetDoctorByName("Carlos Pereira");
+        var doctor = repo.GetDoctorByName("Ana Costa".ToLower());
 
         Assert.NotNull(doctor);
-        Assert.Equal("Carlos Pereira", doctor!.Name);
+        Assert.Equal("Ana Costa", doctor!.Name);
     }
 
     [Fact]
